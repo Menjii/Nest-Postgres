@@ -7,14 +7,7 @@ export declare class TasksController {
     constructor(tasksService: TasksService);
     getTasks(): Task[];
     getTaskById(id: string): Task;
-    create(createTaskDto: CreateTaskDto): Promise<{
-        id: `${string}-${string}-${string}-${string}-${string}`;
-        title: string;
-        description: string | undefined;
-        completed: boolean;
-        createdAt: Date;
-        updatedAt: Date;
-    }>;
+    create(createTaskDto: CreateTaskDto): Promise<Task>;
     updateTask(id: string, upodateTaskDto: UpdateTaskDto): Promise<Task>;
     deleteTask(id: string): Promise<void>;
 }

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import { TasksService } from './tasks.service.js';
 import { CreateTaskDto } from './dto/create-task.dto.js';
 import { UpdateTaskDto } from './dto/update-task.dto.js';
@@ -20,14 +20,10 @@ let TasksController = class TasksController {
         this.tasksService = tasksService;
     }
     getTasks() {
-        return this.tasksService.getTasksTable();
+        return this.tasksService.findAll();
     }
     getTaskById(id) {
-        const taskTable = this.tasksService.getTasksTable();
-        const task = taskTable.find((tk) => tk.id === id);
-        if (!task)
-            throw new NotFoundException(`Task with ID "${id}" not found`);
-        return task;
+        return this.tasksService.findOne(id);
     }
     async create(createTaskDto) {
         return this.tasksService.create(createTaskDto);

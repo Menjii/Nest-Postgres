@@ -17,8 +17,14 @@ let TasksService = class TasksService {
             updatedAt: new Date()
         }
     ];
-    getTasksTable() {
+    findAll() {
         return this.tasks;
+    }
+    findOne(id) {
+        const task = this.tasks.find((tk) => tk.id === id);
+        if (!task)
+            throw new NotFoundException(`Task with ID "${id}" not found`);
+        return task;
     }
     create(createTaskDto) {
         const uuid = randomUUID();

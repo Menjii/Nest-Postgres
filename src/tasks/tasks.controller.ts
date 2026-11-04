@@ -10,7 +10,7 @@ export class TasksController {
     constructor(private readonly tasksService: TasksService) {}
 
     @Get()
-    getTasks(): Task[] {
+    getTasks(): ReturnType<TasksService['findAll']> {
         return this.tasksService.findAll();
     }
 
